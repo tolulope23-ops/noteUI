@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Handlee&family=Noto+Serif+Oriya:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica", Arial, sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#app {
+  display: flex;
+  width: 90vw;
+  height: 90vh;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar {
+  width: 25%;
+  background-color: #f7f7f7;
+  padding: 20px;
+  overflow-y: auto;
+  scrollbar-width:none;
+}
+
+#sidebar h2 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-family: "Delius Swash Caps", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
+
+#noteList {
+  list-style: none;
+}
+
+#noteList li {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow-x:hidden;
+}
+
+#noteList li:nth-child(odd) {
+  background-color:  #dce775;
+}
+
+#noteList li:nth-child(even) {
+  background-color: #ffcc80;
+}
+
+#noteList li h3 {
+  text-transform:capitalize;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-family: "Noto Serif Oriya", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 700;
+}
+
+#noteList li p {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 5px;
+  font-family:'Times New Roman', Times, serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+#noteList li small {
+  font-size: 12px;
+  color: #878686;
+  font-weight: bold;
+}
+
+#noteList .delete-btn {
+  position: absolute;
+  right: 10px;
+  bottom: .7em;
+  color: #e15a5a;
+   cursor: pointer;
+   transition: .3s;
+}
+
+#noteList .delete-btn:hover {
+  color: #a12523;
+}
+
+#mainContent {
+  width: 70%;
+  padding: 20px;
+  background-color: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#noteTitle {
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 10px;
+  padding: 10px;
+  outline: none;
+  background-color: #f7f7f7;
+  font-family: "Noto Serif Oriya", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 700;
+}
+
+#noteContent {
+  flex-grow: 1;
+  padding: 20px;
+  border: none;
+  resize: none;
+  background-color: #f7f7f7;
+  font-size: 1.2em;
+  outline: none;
+  font-family:'Times New Roman', Times, serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+#saveBtn {
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+}
+
+#saveBtn:hover {
+  background-color: #1976d2;
+}
+
+#noteDate,
+small {
+  font-size: 12px;
+  color: #666;
+  margin-top: 10px;
+  text-align: right;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media screen and (max-width: 767px) {
+  #sidebar{
+    width:30%;
+  }
+  #maincontent{
+    width:100%;
+  }
+  #sidebar button{
+    border:none;
+  }
+  #sidebar button i{
+    display: block;
+    text-align: center;
+    font-size: 28px;
+  }
+  #sidebar h2{
+    display: none;
+  }  
+}

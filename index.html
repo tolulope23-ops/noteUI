@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Note App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="sidebar">
+        <h2>Tolulope's Diary</h2>
+         <a href=""></a>
+        <ul id="noteList"></ul>
+      </div>
+      <div id="mainContent">
+        <input type="text" id="noteTitle" placeholder="New Title" required/>
+        <textarea
+          id="noteContent"
+          placeholder="Start typing your note..."
+        ></textarea>
+        <button id="saveBtn" style="display: none">Save</button>
+        <p id="noteDate"></p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
