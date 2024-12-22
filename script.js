@@ -14,7 +14,6 @@ async function fetchNotes() {
     const response = await fetch(API_URL);
     const notes = await response.json();
     const datanotes = notes.data;
-    console.log(datanotes);
     renderNotes(datanotes);
   } catch (error) {
     console.error("Error fetching notes:", error);
@@ -67,11 +66,6 @@ async function showNote(id) {
         datanotes.updatedAt
       ).toLocaleString()}`;
       saveBtn.style.display = "none"; // Initially hide save button
-
-      // noteTitle.oninput = ()=> {
-      //   if( noteContent.value !== note.content ||
-      //     noteTitle.value !== note.title))
-      // }
 
       // Show save button only when changes are made
       noteContent.oninput = () => {
@@ -165,7 +159,7 @@ noteContent.oninput = () => {
 };
 
 // Event listeners
-saveBtn.onclick = saveNote;
+saveBtn.onclick = saveNote();
 
 // Load notes when the app is first launched
 fetchNotes();
