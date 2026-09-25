@@ -68,11 +68,6 @@ async function showNote(id) {
       ).toLocaleString()}`;
       saveBtn.style.display = "none"; // Initially hide save button
 
-      // noteTitle.oninput = ()=> {
-      //   if( noteContent.value !== note.content ||
-      //     noteTitle.value !== note.title))
-      // }
-
       // Show save button only when changes are made
       noteContent.oninput = () => {
         if (
@@ -165,7 +160,7 @@ noteContent.oninput = () => {
 };
 
 // Event listeners
-saveBtn.onclick = saveNote;
+saveBtn.onclick = saveNote();
 
 // Load notes when the app is first launched
 fetchNotes();
