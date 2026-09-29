@@ -5,8 +5,8 @@ const saveBtn = document.getElementById("saveBtn");
 const noteDate = document.getElementById("noteDate");
 let currentNoteId = null;
 
-// Base API URL
-const API_URL = "http://localhost:3000/api/v1/notes";
+// const API_URL = "http://localhost:3000/api/v1/notes";
+const API_URL="https://noteapi-dfyw.onrender.com/api/v1/notes"
 
 // Fetch notes from API
 async function fetchNotes() {
