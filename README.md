@@ -4,6 +4,10 @@ A simple note-taking web application that provides a user interface for creating
 
 The frontend communicates with the **Note API** using JavaScript's `fetch()` API and provides a lightweight interface for managing notes.
 
+## Preview
+
+![Note App Preview](./assets/note-app-preview.png)
+
 ## Features
 
 * View all saved notes
