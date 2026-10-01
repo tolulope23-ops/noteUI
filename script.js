@@ -14,7 +14,7 @@ async function fetchNotes() {
     const response = await fetch(API_URL);
     const notes = await response.json();
     const datanotes = notes.data;
-    console.log(datanotes);
+    // console.log(datanotes);
     renderNotes(datanotes);
   } catch (error) {
     console.error("Error fetching notes:", error);
@@ -39,7 +39,11 @@ function renderNotes(notes) {
 
     const deleteBtn = document.createElement("i");
     deleteBtn.classList.add("fa-sharp", "fa-solid","fa-trash", "delete-btn");
-    deleteBtn.onclick = async () => await deleteNote(note._id);
+    deleteBtn.onclick = async (event) => {
+      // Prevent clicking delete from also opening the note
+      event.stopPropagation()
+      await deleteNote(note._id);
+    }
     
 
     noteItem.appendChild(noteTitle);
@@ -67,20 +71,27 @@ async function showNote(id) {
         datanotes.updatedAt
       ).toLocaleString()}`;
       saveBtn.style.display = "none"; // Initially hide save button
-
-      // Show save button only when changes are made
-      noteContent.oninput = () => {
-        if (
-          noteContent.value !== datanotes.content ||
-          noteTitle.value !== datanotes.title
-        ) {
-          saveBtn.style.display = "block";
-        }
-      };
     }
   } catch (error) {
     console.error("Error fetching note:", error);
   }
+}
+
+function checkForChanges() {
+  // Creating a new note
+  if (!currentNoteId) {
+    if (noteTitle.value.trim() || noteContent.value.trim()) {
+      saveBtn.style.display = "block";
+    } else {
+      saveBtn.style.display = "none";
+    }
+    return;
+  };
+
+  // Editing an existing note
+  const hasChanged = noteTitle.value !== noteTitle ||
+    noteContent.value !== noteContent;
+    saveBtn.style.display = hasChanged ? "block" : "none";
 }
 
 // Save a new or updated note
@@ -93,7 +104,7 @@ async function saveNote() {
   if (currentNoteId) {
     // Update existing note.
     try {
-      await fetch(`${API_URL}/${currentNoteId}`, {
+      await fetch(`${API_URL}/update/${currentNoteId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +117,7 @@ async function saveNote() {
   } else {
     // Create new note
     try {
-      await fetch(`${API_URL}`/add, {
+      await fetch(`${API_URL}/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -121,7 +132,7 @@ async function saveNote() {
   // Clear form and fetch notes again
   clearNoteForm();
   await fetchNotes();
-}
+};
 
 // Delete a note
 async function deleteNote(id) {
@@ -145,22 +156,11 @@ function clearNoteForm() {
   saveBtn.style.display = "none";
 }
 
-// let button save appears when typing in the title
-noteTitle.oninput = () =>{
-  if(noteTitle.value.trim() || noteContent.value.trim()){
-    saveBtn.style.display = "block";
-  }
-};
-
-// let button appears when typing in a new note
-noteContent.oninput = () => {
-  if (noteContent.value.trim() || noteTitle.value.trim()) {
-    saveBtn.style.display = "block";
-  }
-};
+noteTitle.oninput = checkForChanges;
+noteContent.oninput = checkForChanges;
 
 // Event listeners
-saveBtn.onclick = saveNote();
+saveBtn.onclick = saveNote;
 
 // Load notes when the app is first launched
 fetchNotes();
